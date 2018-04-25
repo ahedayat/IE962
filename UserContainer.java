@@ -54,6 +54,15 @@ class UserContainer{
 		return this.onlineUsers;
 	}
 
+	public User getOnlineUser(String username){
+		User crrOnlineUser = users.get(username);
+		if(crrOnlineUser==null)
+			throw new IllegalArgumentException("There isn't any user with this username");
+		else if(!onlineUsers.contains(crrOnlineUser))
+			throw new IllegalArgumentException("This user isn't online!");
+		return crrOnlineUser;
+	}
+
 	public void put(User newUser){														//tested 
 		users.put(newUser.getUsername(),newUser);
 		usernamesOfUsers.add(newUser.getUsername());
@@ -66,5 +75,15 @@ class UserContainer{
 		}
 		else
 			throw new IllegalArgumentException("This user isn't online!");
+	}
+
+	public void print(){
+		Integer counter = new Integer(0);
+		for (String username : usernamesOfUsers) {
+			++counter;
+			System.out.println("# " + counter);
+			this.users.get(username).print();
+			System.out.println("------------------------------------");
+		}
 	}
 }
