@@ -27,6 +27,8 @@ public class KhaneBeDoosh{
 	private static HouseContainer houses;
 	private static UserContainer users;
 
+	private static Integer phonePrice = 1000;
+
 	static{																	//tested
 		users = new UserContainer();
 		houses = new HouseContainer();
@@ -90,6 +92,12 @@ public class KhaneBeDoosh{
 	public Boolean logout(String username){									//tested
 		Boolean logout = users.logout(username);
 		return logout;
+	}
+
+	public void buyPhone(String username,String idOfHouse){					
+		User user = this.users.getOnlineUser(username);
+		user.decreaseBalance(this.phonePrice);
+		user.buyPhone(idOfHouse);
 	}
 
 	public User getOnlineUser(String username){								//tested
